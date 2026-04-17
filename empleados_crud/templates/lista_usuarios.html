@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="usuarios-container">
+    <div class="usuarios-header">
+        <h2>Usuarios</h2>
+        <div class="filter" style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+                <input type="text" id="buscar" placeholder="Buscar Usuario...">
+        </div>
+    </div>
+
+    {% if usuarios %}
+
+    <div class="table-responsive">
+        <table>
+            <thead>
+                <tr>
+                    <th>Usuario</th>
+                    <th>Nombres</th>
+                    <th>Apellidos</th>
+                    <th>Correo electrónico</th>
+                    <th>Cédula</th>
+                    <th>Teléfono</th>
+                    <th>Rol</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for usuario in usuarios %}
+                <tr>
+                    <td data-label="Usuario">{{ usuario.username }}</td>
+                    <td data-label="Nombres">{{ usuario.first_name }}</td>
+                    <td data-label="Apellidos">{{ usuario.last_name }}</td>
+                    <td data-label="Correo">{{ usuario.email }}</td>
+                    <td data-label="Cédula">{{ usuario.cedula }}</td>
+                    <td data-label="Teléfono">{{ usuario.telefono }}</td>
+                    <td data-label="Rol">{{ usuario.rol }}</td>
+                    <td data-label="Acciones">
+                        <a href="{% url 'editar_usuario' usuario.id %}">Editar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    
+    {% else %}
+    <p class="no-usuarios">No hay usuarios creados</p>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+{% block content %}
+
+    <div class="usuarios-container">
+        <div class="usuarios-header">
+        <h2>Herramientas</h2>
+
+            <div class="filtros-header">
+
+                <input type="text" id="buscar" placeholder="Buscar por nombre">
+
+                <form method="get" class="filtros-fecha">
+                    <input type="date" id="fechaInicio" name="fecha_inicio"
+                        class="filtro-fecha"
+                        value="{{ request.GET.fecha_inicio }}">
+
+                    <input type="date" id="fechaFin" name="fecha_fin"
+                        class="filtro-fecha"
+                        value="{{ request.GET.fecha_fin }}">
+
+                    <button id="btnFiltrarFechas" class="boton-filtro">
+                        Filtrar
+                    </button>
+
+                    <a href="{% url 'lista_herramientas' %}" class="boton-limpiar">
+                        Limpiar
+                    </a>
+                </form>
+
+                <button id="exportarExcel"
+                        class="boton-excel"
+                        type="button"
+                        data-tipo="nomina">
+                    📊 Exportar Excel
+                </button>
+
+            </div>
+        </div>
+
+        {% if herramientas %}
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Tipo</th>
+                        <th>Cantidad</th>
+                        <th>Empleado Asignado</th>
+                        {% if request.user.rol == 'Administrador' %}
+                            <th>Registrado por</th>
+                        {% endif %}
+                        <th>Fecha Entrega</th>
+                        <th>Fecha Devolución</th>
+                        <th>Estado</th>
+                        <th>Observaciones</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for herramienta in herramientas %}
+                    <tr>
+                        <td data-label="Nombre">{{ herramienta.nombre_herramienta }}</td>
+                        <td data-label="Tipo">{{ herramienta.tipo }}</td>
+                        <td data-label="Cantidad">{{ herramienta.cantidad }}</td>
+                        <td data-label="Empleado">{{ herramienta.empleado_asignado.first_name }} {{ herramienta.empleado_asignado.last_name}}</td>
+                        {% if request.user.rol == 'Administrador'%}
+                            <td data-label="Registrado por">{{ herramienta.registrado_por.first_name}} {{ herramienta.registrado_por.last_name }}</td>
+                        {% endif %}
+                        <td data-label="Entrega" data-fecha="{{ herramienta.fecha_entrega|date:'Y-m-d' }}">{{ herramienta.fecha_entrega|date:'d/m/Y' }}</td>
+                        <td data-label="Devolución">
+                            {% if herramienta.fecha_devolucion %}
+                                {{ herramienta.fecha_devolucion|date:'d/m/Y' }}
+                            {% else %}
+                                Pendiente
+                            {% endif %}
+                        </td>
+                        <td data-label="Estado">
+                            {% if herramienta.estado == 'buena' %}
+                                <span class="estado-badge estado-buena">{{ herramienta.get_estado_display }}</span>
+                            {% elif herramienta.estado == 'Regular' %}
+                                <span class="estado-badge estado-regular">{{ herramienta.get_estado_display }}</span>
+                            {% else %}
+                                <span class="estado-badge estado-mala">{{ herramienta.get_estado_display }}</span>
+                            {% endif %}
+                        </td>
+                        <td data-label="Observaciones">{{ herramienta.observaciones|default:"N/A" }}</td>
+                        <td data-label="Acciones">
+                            <div class="acciones-container">
+                                <a href="{% url 'editar_herramienta' herramienta.id %}">Editar</a>
+                                <a href="{% url 'eliminar_herramienta' herramienta.id %}" class="btn-eliminar">Eliminar</a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+        {% else %}
+        <p class="no-usuarios">No hay herramientas registradas en el sistema.</p>
+        {% endif %}
+
+        <div style="margin-top: 20px;">
+            <a href="{% url 'herramientas' %}" class="boton">
+                Volver a Agregar Herramientas
+            </a>
+        </div>
+    
+    </div>
+{% endblock %}

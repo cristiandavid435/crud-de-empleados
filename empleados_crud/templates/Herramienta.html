@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div>
+    <div class="container-formulary">
+        <form class="formulary" action="{% url 'herramientas' %}" method="POST">
+            {% csrf_token %}
+            <h2 class="title">Agregar  herramienta</h2>
+            {# Renderizar el formulario. Los widgets están configurados en forms.py #}
+            {{ form.as_p }}           
+            <div class="btn-container">
+                <button  class="buttons" type="submit">Agregar</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

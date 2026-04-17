@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+    <!DOCTYPE html>
+    <html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Obra Max</title>
+        <link rel="stylesheet" href="{% static 'CSS/styles.css' %}">
+    </head>
+        <body>
+            <div class="container">
+                <h1 class="card-body">Construimos más que obras: construimos confianza</h1>
+                <p class="card-text">
+                    En Obra Max convertimos ideas en realidades sólidas. Nos especializamos en el desarrollo de proyectos de construcción que no solo transforman espacios, sino que también generan bienestar, progreso y calidad de vida para las personas. Cada obra que realizamos nace del compromiso con la excelencia, la planificación responsable y el cuidado en cada detalle, desde el diseño inicial hasta la entrega final.
+                    Contamos con un equipo de profesionales altamente capacitados, materiales de alta calidad y procesos constructivos eficientes que garantizan estructuras seguras, funcionales y duraderas. Desarrollamos proyectos de vivienda, comercio, infraestructura y remodelaciones, adaptándonos a las necesidades de cada cliente y cumpliendo con los más altos estándares técnicos y normativos.
+                </p>
+            </div>
+
+            <div class="container-img">
+                <img  class ="imgs" src="{% static 'img/casa.jpg' %}" alt="casa">
+                <img  class ="imgs" src="{% static 'img/unnamed.jpg' %}" alt="casa">
+                <img  class ="imgs trabajadores" src="{% static 'img/trabajadores.jpg' %}" alt="trabajadores">
+            </div>
+        </body>
+    </html>
+{% endblock %}

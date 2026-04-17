@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Editar Usuario</title>
+    </head>
+    <body>
+        <div>
+            <div class="container-formulary">
+                <form  class="formulary" action="{% url 'editar_usuario' usuario.id %}" method="POST">
+                    <h2>Editar usuario</h2>
+
+                    {% csrf_token %}
+
+                    <div class="container-input">
+                        <input  value = "{{ usuario.username }}"for="username"type="text" name="username" class="form-control">
+                    </div>
+                    
+                    <div class="container-input">
+                        <input  value = "{{ usuario.first_name }}" for="first_name" type="text" name="first_name" placeholder="Nombres" class="form-control">
+                    </div>
+                    
+                    <div class="container-input">
+                        <input  value = "{{ usuario.last_name }}" for="last_name" type="text" name="last_name" placeholder="Apellidos" class="form-control">
+                    </div>
+                     
+                    <div class="container-input">
+                        <select name="rol" id="rol" class="form-control">
+                        <option value="Administrador" {% if usuario.rol == "Administrador" %}selected{% endif %}>Administrador</option>
+                        <option value="Ingeniero civil" {% if usuario.rol == "Ingeniero civil" %}selected{% endif %}>Ingeniero Civil</option>
+                        <option value="Maestro de obra" {% if usuario.rol == "Maestro de obra" %}selected{% endif %}>Maestro de Obra</option>
+                    </select>
+                    </div>
+                    
+
+                    <div class="container-input">
+                        <input value = "{{ usuario.email }}"for="email" type="email" name="email" placeholder="Ingrese su correo" class="form-control">
+                    </div>
+                    
+
+                    <div class="container-input">
+                        <input value = "{{ usuario.cedula }}" for="cedula" type="number" name="cedula" placeholder="Ingrese su cedula" class="form-control">
+                    </div>
+                    
+
+                    <div class="container-input">
+                        <input  value = "{{ usuario.telefono }}" for="telefono" type="number" name="telefono" placeholder="Ingrese su telefono" class="form-control"> <br>
+                    </div>
+
+                    <div class="container-input">
+                        <button class="buttons" type="submit">Editar Usuario </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
+    </html>
+
+
+
+{% endblock %}

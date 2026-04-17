@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div>
+    <div class="container-formulary">
+        <form class="formulary" action="{% url 'editar_nomina' nomina.id %}" method="POST">
+            {% csrf_token %}
+            <h2 class="title">Editar nomina</h2>
+            {{ form.as_p }}
+            <button class="buttons" type="submit">Editar</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

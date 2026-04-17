@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="usuarios-container">
+    
+    <div class="usuarios-header">
+        <h2>Nòmina</h2>
+
+        <div class="filtros-header">
+
+            <input type="text" id="buscar" placeholder="Buscar por nombre">
+
+            <form method="get" class="filtros-fecha">
+                <input type="date" id="fechaInicio" name="fecha_inicio"
+                    class="filtro-fecha"
+                    value="{{ request.GET.fecha_inicio }}">
+
+                <input type="date" id="fechaFin" name="fecha_fin"
+                    class="filtro-fecha"
+                    value="{{ request.GET.fecha_fin }}">
+
+                <button id="btnFiltrarFechas" class="boton-filtro">
+                    Filtrar
+                </button>
+
+                <a href="{% url 'empleados_nomina' %}" class="boton-limpiar">
+                    Limpiar
+                </a>
+            </form>
+
+            <button id="exportarExcel"
+                    class="boton-excel"
+                    type="button"
+                    data-tipo="nomina">
+                📊 Exportar Excel
+            </button>
+
+        </div>
+    </div>
+
+
+    {% if nominas %}
+    
+    <div class="table-responsive">
+        <table>
+            <thead>
+                <tr>
+                    <th>Empleado</th>
+                    <th>Salario Base</th>
+                    <th>Horas</th>
+                    <th>Bonificaciones</th>
+                    <th>Descuentos</th>
+                    <th>Total a Pagar</th>
+                    <th>Fecha Pago</th>
+                    <th>Estado</th>
+                    <th>Observaciones</th>
+                    {% if request.user.rol == 'Administrador' %}
+                        <th>Registrado por</th>
+                    {% endif %}
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for nomina in nominas %}
+                <tr>
+                    <td data-label="Empleado">{{ nomina.empleado.first_name }} {{nomina.empleado.last_name }}</td>
+                    <td data-label="Salario Base">{{ nomina.salario_base }}</td>
+                    <td data-label="Horas">{{ nomina.horas_trabajadas }}</td>
+                    <td data-label="Bonificaciones">{{ nomina.bonificaciones }}</td>
+                    <td data-label="Descuentos">{{ nomina.descuentos }}</td>
+                    <td data-label="Total">{{ nomina.total_pagar }}</td>
+                    <td data-label="Fecha Pago"
+                        data-fecha="{{ nomina.fecha_pago|date:'Y-m-d' }}">
+                        {{ nomina.fecha_pago|date:'d/m/Y' }}
+                    </td>
+                    <td data-label="Estado">{{ nomina.estado_pago.capitalize }}</td>
+                    <td data-label="Observaciones">{{ nomina.observaciones }}</td>
+                    {% if request.user.rol == 'Administrador' %}
+                        <td data-label="Registrado por">{{ nomina.registrado_por.first_name }} {{ nomina.registrado_por.last_name }} </td>
+                    {% endif %}
+                    <td data-label="Acciones">
+                        <a href="{% url 'editar_nomina' nomina.id %}">Editar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% else %}
+    <p class="no-usuarios">No hay registros aún.</p>
+    {% endif %}
+
+    <div style="margin-top: 20px;">
+        <a href="{% url 'nomina' %}" class="boton">
+            Volver a Registrar Nómina
+        </a>
+    </div>
+</div>
+{% endblock %}

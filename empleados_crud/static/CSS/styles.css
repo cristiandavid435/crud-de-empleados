@@ -1,0 +1,981 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    font-family: sans-serif;
+    background-color: #fff;
+    color: #000;
+    overflow-x: hidden;
+    padding-top: 80px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+
+/* .layout {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+} */
+
+.main-content {
+    flex: 1;
+    padding-bottom: 90px;
+}
+
+.navbar {
+    background-color: #0088ee;
+    width: 100%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.nav__list {
+    list-style: none;
+    display: flex;
+    gap: 10px;
+}
+
+
+
+.nav__container {
+    margin: auto;
+    padding: 8px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    height: 80px;
+}
+
+.nav__right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+.nav__logo-link {
+    display: inline-flex;
+    align-items: center;
+}
+
+.nav_logo-img {
+    height: 50px;
+    width: auto;
+    max-width: 100%;
+    display: block;
+    border-radius: 100px;
+    object-fit: contain;
+    /* image-rendering: crisp-edges; */
+}
+
+
+.nav_link {
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 12px;
+    background-color: transparent;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+}
+
+.nav_link:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+}
+
+
+.nav__item {
+    list-style: none;
+    display: inline-block;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* USUARIO EN LA NAVBAR */
+.nav__user-profile {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 12px;
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    flex-shrink: 0;
+    max-width: 180px;
+}
+
+.nav__user-name {
+    max-width: 110px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 12px;
+    color: #fff;
+}
+
+.nav__user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0
+}
+
+/* BOTÓN HAMBURGUESA */
+.nav__toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 28px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.nav__toggle:hover {
+    transform: scale(1.1);
+}
+
+
+.card-body {
+    margin-top: 40px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 35px;
+}
+
+.container {
+    padding-left: 40px;
+    padding-right: 40px;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    margin-left: 30px;
+    margin-right: 30px;
+    
+}
+
+.card-text {
+    font-size: 16px;
+    text-align: justify;
+}
+
+
+.container-img {
+    padding-right: 20px;
+    padding-top : 20px;
+    margin-left: 60px;
+    margin-right: 60px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+} 
+
+
+.imgs  {
+    max-width: 100%;
+    height: auto;
+    width: 400px;
+    margin: 15px 15px 15px 15px;
+    display: block;
+    border-radius: 6px;
+}
+
+
+.footer {
+    background-color: #0088ee;
+    color: white;
+    text-align: center;
+    padding: 25px 20px;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+
+
+.container-formulary {
+    margin: auto;
+    padding: 6px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 90px);
+    max-width: 1200px;
+}
+
+.title {
+
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.formulary {
+    margin: 20px;
+    padding: 30px;
+    border: 2px solid rgb(60, 60, 61);
+    border-radius: 6px;
+    width: 450px;
+    height: auto;
+    align-items: center;
+}
+
+.container-input {
+    margin: 10px;
+    padding: 8px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.container-input input,textarea,select
+{
+    width: 100%;
+    max-width: 350px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.container-input input:focus,
+.container-input select:focus,
+.container-input textarea:focus {
+    outline: none;
+    border-color: #0088ee;
+    box-shadow: 0 0 5px rgba(0, 136, 238, 0.3);
+}
+
+.container-input a {
+    text-align: center;
+    width: 100%;
+    text-decoration: none;
+    color: #0088ee;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.container-input a:hover {
+    color: #0066bb;
+    text-decoration: underline;
+}
+
+
+.formulary .button {
+    width: 100%;
+    max-width: 350px;
+    padding: 12px;
+    background-color: #0088ee;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+    box-sizing: border-box;
+    justify-content: center;
+}
+
+.formulary button:hover{
+    background-color: #0066bb;
+}
+
+
+
+.formulary .message {
+    text-align: center;
+    color: red;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.date {
+    font-family: sans-serif;
+}
+
+.btn-container {
+    display: flex;
+    justify-content: center;
+}
+.buttons {
+    display: block;
+    margin: 0 auto;
+    width: 50%;
+    max-width: 350px;
+    padding: 12px;
+    background-color: #0088ee;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+    box-sizing: border-box;
+}
+
+.boton {
+    padding: 10px 20px; 
+    background-color: #0088ee; 
+    color: white; 
+    text-decoration: none; 
+    border-radius: 3px; 
+    display: inline-block;
+}
+
+/* Botón Excel (negro claro) */
+.boton-excel {
+    padding: 10px 20px;
+    background-color: #424242;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.boton-excel:hover {
+    background-color: #303030;
+}
+
+/* Estilos para el filtro de fechas */
+.filtro-fecha {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    gap: 6px;
+    padding: 8px 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 4px;
+    font-size: 14px;
+    font-family: sans-serif;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.filtro-fecha:focus {
+    outline: none;
+    border-color: #0088ee;
+    box-shadow: 0 0 5px rgba(0, 136, 238, 0.3);
+}
+
+input[type="date"]::-webkit-datetime-edit {
+    text-align: center;
+}
+
+.boton-filtro {
+    padding: 8px 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.boton-filtro:hover {
+    background-color: #45a049;
+}
+
+.boton-limpiar {
+    padding: 8px 16px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.boton-limpiar:hover {
+    background-color: #da190b;
+}
+
+.titulo {
+    font-size: 20px;
+    font-family: sans-serif;
+    color: #000;
+}
+
+.parrafo {
+    font-size: 15px;
+    font-family: sans-serif;
+    color: #323131;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+table thead {
+    background-color: #0088ee;
+    color: white;
+}
+
+table thead th {
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+}
+
+table tbody tr {
+    border-bottom: 1px solid #e0e0e0;
+    transition: background-color 0.3s ease;
+}
+
+table tbody tr:hover {
+    background-color: #f5f5f5;
+}
+
+table tbody td {
+    padding: 12px 15px;
+    font-size: 14px;
+    color: #333333;
+    cursor: pointer;
+}
+
+table tbody td:first-child {
+    min-width: 200px;
+    white-space: nowrap;
+}
+
+table tbody tr:last-child {
+    border-bottom: none;
+}
+/* Estilos para botones en la tabla */
+table a {
+    padding: 6px 12px;
+    margin: 2px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    display: inline-block;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+table a:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3);
+}
+
+table a.btn-eliminar {
+    background-color: #f44336;
+}
+
+table a.btn-eliminar:hover {
+    background-color: #da190b;
+    box-shadow: 0 4px 8px rgba(244, 67, 54, 0.3);
+}
+
+/* Contenedor de acciones para botones lado a lado */
+.acciones-container {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.acciones-container a {
+    white-space: nowrap;
+}
+
+/* Badges de estado */
+.estado-badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    display: inline-block;
+    text-align: center;
+    min-width: 80px;
+}
+
+.estado-buena {
+    background-color: #c8e6c9;
+    color: #2e7d32;
+}
+
+.estado-regular {
+    background-color: #ffe0b2;
+    color: #e65100;
+}
+
+.estado-mala {
+    background-color: #ffcdd2;
+    color: #c62828;
+}
+
+/* Buscador */
+#buscar {
+    padding: 10px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 6px;
+    width: 250px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+#buscar:focus {
+    outline: none;
+    border-color: #0088ee;
+    box-shadow: 0 0 8px rgba(0, 136, 238, 0.2);
+}
+
+/* Contenedor de usuarios */
+.usuarios-container {
+    margin: 30px auto;
+    padding: 20px;
+    padding-right: 40px;
+    max-width: 1200px;
+    min-height: 400px;
+}
+ 
+.usuarios-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    flex-wrap: nowrap;
+    gap: 15px;
+}
+
+.usuarios-header h2 {
+    font-size: 28px;
+    color: #333333;
+    margin: 0;
+}
+
+
+
+.filtros-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.filtros-fecha {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+
+/* Mensaje cuando no hay usuarios */
+.no-usuarios {
+    text-align: center;
+    padding: 40px 20px;
+    color: #999999;
+    font-size: 16px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+/* 📱 RESPONSIVE */
+@media (max-width: 768px) {
+
+    body {
+        font-size: 14px;
+    }
+
+
+    .nav__toggle {
+        display: block;
+        z-index: 10000;
+    }
+
+    .nav__list {
+        position: fixed;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        display: none;           /* 🔥 clave */
+        flex-direction: column;
+        background-color: #0088ee;
+        z-index: 9999;
+    }
+
+    .nav__list.show {
+        display: flex;           /* 🔥 se abre */
+    }
+
+    .nav__item {
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav_link {
+        display: block;
+        padding: 12px;
+    }
+
+    .nav__user-profile {
+        margin-left: 0;
+        margin-top: 10px;
+        padding: 8px 12px;
+    }
+
+    .container {
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .card-body {
+        font-size: 24px;
+    }
+
+    .card-text {
+        font-size: 14px;
+        text-align: justify;
+        line-height: 1.6;
+    }
+
+    .container-img {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .imgs {
+        width: 90%;
+        max-width: 300px;
+        margin: 10px auto;
+    }
+
+    /* TABLAS RESPONSIVAS EN TABLET */
+    .usuarios-container {
+        margin: 20px auto;
+        padding: 15px;
+        max-width: 100%;
+    }
+
+    .usuarios-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .usuarios-header h2 {
+        font-size: 22px;
+    }
+
+    
+    #buscar {
+        width: 100%;
+        max-width: 100%;
+        font-size: 14px;
+    }
+
+    .filtro-fecha {
+        width: 130px;
+        font-size: 12px;
+        padding: 6px 8px;
+        cursor: pointer;
+    }
+
+    .boton-filtro,
+    .boton-limpiar {
+        padding: 6px 12px;
+        font-size: 14px;
+    }
+
+    table {
+        font-size: 14px;
+    }
+
+    table thead th {
+        padding: 10px 8px;
+    }
+
+    table tbody td {
+        padding: 10px 8px;
+    }
+
+    table a {
+        padding: 5px 8px;
+        font-size: 11px;
+        margin: 2px 1px;
+    }
+
+    .estado-badge {
+        padding: 4px 8px;
+        font-size: 11px;
+        min-width: 70px;
+    }
+
+    .acciones-container {
+        gap: 5px;
+    }
+}
+
+
+@media (max-width: 480px) {
+    .container {
+        padding-left: 10px;
+        padding-right: 10px;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+
+    .card-body {
+        font-size: 18px;
+        margin-top: 20px;
+    }
+
+    .card-text {
+        font-size: 12px;
+        text-align: justify;
+        line-height: 1.6;
+    }
+
+    .container-img {
+        margin-left: 10px;
+        margin-right: 10px;
+        padding-right: 10px;
+    }
+
+    .imgs {
+        width: 95%;
+        max-width: 250px;
+        margin: 8px auto;
+    }
+
+    /* 👇 TABLAS CON SCROLL HORIZONTAL EN MÓVIL */
+    .usuarios-container {
+        margin: 15px 0;
+        padding: 10px;
+        max-width: 100%;
+    }
+
+    .usuarios-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .usuarios-header h2 {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    .filtros-header {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        gap: 8px;
+    }
+
+    #buscar {
+        width: 100%;
+        padding: 8px 10px;
+        font-size: 13px;
+    }
+
+    .filtros-fecha {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+    }
+
+
+    .filtro-fecha {
+        padding-bottom: 6px;
+        border-bottom: 1px solid #eee;
+        width: 100%;
+        align-items: stretch;
+        width: 100%;
+        gap: 6px;
+        font-size: 14px;
+        padding: 6px;
+        text-align: center;
+    }
+
+    .filtros-fecha .filtro-fecha {
+        order: 1;
+        width: 100%;
+    }
+
+    /* Botón Filtrar debajo de fechas */
+    .filtros-fecha .boton-filtro {
+        order: 2;
+        margin-top: 6px;
+        width: 100%;
+    }
+
+    /* Botón Limpiar debajo de Filtrar */
+    .filtros-fecha .boton-limpiar {
+        order: 3;
+        margin-top: 4px;
+        width: 100%;
+    }
+
+    .separador-fecha {
+        display: none;
+    }
+
+    .boton-excel {
+        width: 100%;
+        text-align: center;
+        order: 2;
+        margin-top: 10px;
+        font-size: 14px;
+    }
+
+    .boton-filtro,
+    .boton-limpiar {
+        font-size: 14px;
+        margin-top: 5px;
+        padding: 8px 12px;
+        width: 60%;
+        text-align: center;
+    }
+
+    
+
+    /* 👇 TABLA HORIZONTAL CON SCROLL - NO APILADA */
+    .table-responsive {
+        width: 100%;
+        overflow-x: auto;
+        overflow-y: visible;
+        -webkit-overflow-scrolling: touch;
+        border-radius: 8px;
+        margin-bottom: 15px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .boton-filtro {
+        font-weight: 600;
+    }
+
+    .boton-limpiar {
+        opacity: 0.9;
+    }
+
+    /* 👇 LA TABLA MANTIENE SU ESTRUCTURA NORMAL */
+    table {
+        width: 100%;
+        min-width: 900px; 
+        font-size: 14px;
+        border-collapse: collapse;
+        display: table;
+        table-layout: auto;
+    }
+
+    table thead {
+        display: table-header-group; /* 👈 MANTIENE encabezados normales */
+        background-color: #0088ee;
+    }
+
+    table thead th {
+        padding: 10px 8px;
+        white-space: nowrap;
+    }
+
+    table tbody {
+        display: table-row-group; /* 👈 MANTIENE filas normales */
+    }
+
+    table tbody tr {
+        display: table-row; /* 👈 MANTIENE estructura de fila */
+        border-bottom: 1px solid #e0e0e0;
+    }
+
+    table tbody tr:hover {
+        background-color: #f5f5f5;
+    }
+
+    table tbody td {
+        display: table-cell; /* 👈 MANTIENE celdas normales */
+        padding: 10px 8px;
+        white-space: nowrap;
+        position: relative; /* 👈 ELIMINA el before */
+    }
+
+    /* 👇 ELIMINA los data-labels */
+    table tbody td:before {
+        content: none; /* 👈 NO muestra etiquetas */
+    }
+
+    table a {
+        display: inline-block;
+        padding: 6px 10px;
+        margin: 2px 2px;
+        white-space: nowrap;
+    }
+
+    .estado-badge {
+        padding: 4px 8px;
+        font-size: 10px;
+        min-width: 60px;
+        white-space: nowrap;
+    }
+
+    .acciones-container {
+        gap: 4px;
+    }
+
+    .no-usuarios {
+        padding: 30px 15px;
+        font-size: 14px;
+    }
+
+    .formulary {
+        width: 100%;
+        max-width: 100%;
+        padding: 20px;
+        margin: 10px 0;
+    }
+
+    .buttons {
+        width: 100%;
+        max-width: 100%;
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    .boton {
+        width: 100%;
+        text-align: center;
+        padding: 12px 10px;
+        font-size: 14px;
+    }
+}

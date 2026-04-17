@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Usuarios</title>
+</head>
+<body>
+    <div>
+        <div class="container-formulary">
+            <form class="formulary" action="{% url 'crear_usuarios' %}" method="POST">
+                <h2 class="title">Crear usuario</h2>
+                {% csrf_token %}
+                {{ form.errors }}
+
+                <div class="container-input">
+                    <input id="username" type="text" name="username" placeholder="Nombre de usuario" class="form-control">
+                </div>
+
+
+                <div class="container-input">
+                    <input id="first_name" type="text" name="first_name" placeholder="Nombres" class="form-control"> <br>
+                </div>
+                
+
+                <div class="container-input">
+                    <input id="last_name" type="text" name="last_name" placeholder="Apellidos" class="form-control"> <br>
+                </div>
+
+                <div class="container-input">
+                    <select  class="selectt" name="rol" id="rol">
+                        <option value="">-- Seleccione un cargo --</option>
+                        <option value="Administrador">Administrador</option>
+                        <option value="Ingeniero civil">Ingeniero Civil</option>
+                        <option value="Maestro de obra">Maestro de Obra</option>
+                    </select>
+                </div>
+
+                <div class="container-input">
+                    <input id="cedula" type="number" name="cedula" placeholder="Ingrese su cedula" class="form-control"> <br>
+                </div>
+
+                <div class="container-input">
+                    <input id="telefono" type="number" name="telefono" placeholder="Ingrese su telefono" class="form-control"> <br>
+                </div>
+
+                <div class="container-input">
+                    <input id="email" type="email" name="email" placeholder="Correo electrónico" class="form-control"> <br>
+                </div>
+
+                <div class="container-input">
+                    <input id="password1" type="password" name="password1" placeholder="Ingrese su contraseña" class="form-control"> <br>
+                </div>
+
+                <div class="container-input">
+                    <input id="password2" type="password" name="password2" placeholder="Confirme su contraseña" class="form-control"> <br>
+                </div>
+
+                <div class="btn-container">
+                    <button class="buttons" type="submit">Crear Usuario</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+{% endblock %}

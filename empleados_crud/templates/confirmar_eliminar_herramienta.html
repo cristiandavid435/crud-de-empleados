@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h3 class="Confirmar">
+                        Confirmar Eliminación
+                    </h3>
+                    
+                    <p class="mb-3">¿Estás seguro de que deseas eliminar la siguiente herramienta?</p>
+                    
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Tipo</th>
+                                    <th>Cantidad</th>
+                                    <th>Empleado Asignado</th>
+                                    <th>Fecha Entrega</th>
+                                    <th>Fecha Devolución</th>
+                                    <th>Estado</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <td>{{herramienta.nombre_herramienta}}</td>
+                                <td>{{herramienta.tipo}}</td>
+                                <td>{{herramienta.cantidad}}</td>
+                                <td>{{herramienta.empleado_asignado.username}}</td>
+                                <td>{{herramienta.fecha_entrega}}</td>
+                                <td>{{herramienta.fecha_devolucion}}</td>
+                                <td>{{herramienta.estado}}</td>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <p class="parrafo">
+                        Esta acción no se puede deshacer.
+                    </p>
+                    
+                    <form method="POST" class="d-flex gap-2">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger flex-grow-1">
+                            Eliminar
+                        </button>
+                        <button class="btn btn-secondary flex-grow-1">
+                            <a  class = "enlace" href="{% url 'lista_herramientas' %}">
+                                Cancelar
+                            </a>
+                        </button>
+                            
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

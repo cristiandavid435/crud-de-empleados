@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ObraMax</title>
+
+    <link rel="stylesheet" href="{% static 'CSS/styles.css' %}">
+</head>
+<body class="layout">
+
+    <header class="site-header">
+        <nav class="navbar">
+            <div class="nav__container">
+                <button class="nav__toggle" id="navToggle" aria-label="Abrir menú">
+                    ☰
+                </button>
+
+                <!-- MENÚ -->
+                <ul class="nav__list" id="navMenu">
+                    <li class="nav__item"><a class="nav_link" href="{% url 'index' %}">Home</a></li>
+
+                    {% if user.is_authenticated %}
+                        {% if request.user.rol == 'Administrador' %}
+                            <li class="nav__item"><a class="nav_link" href="{% url 'crear_usuarios' %}">Crear Usuarios</a></li>
+                            <li class="nav__item"><a class="nav_link" href="{% url 'lista_usuarios' %}">Lista Usuarios</a></li>
+                            <li class="nav__item"><a class="nav_link" href="{% url 'nomina' %}">Nómina</a></li>
+                            <li class="nav__item"><a class="nav_link" href="{% url 'empleados_nomina' %}">Listado Nómina</a></li>
+                            <li class="nav__item"><a class="nav_link" href="{% url 'herramientas' %}">Agregar Herramienta</a></li>
+                            <li class="nav__item"><a class="nav_link" href="{% url 'lista_herramientas' %}">Lista Herramientas</a></li>
+                        {% else %}
+                            <li class="nav__item"><a class="nav_link" href="{% url 'nomina' %}">Nómina</a></li>
+                            <li class="nav__item"><a class="nav_link" href="{% url 'empleados_nomina' %}">Listado Nómina</a></li>
+                            <li class="nav__item"><a class="nav_link" href="{% url 'herramientas' %}">Herramientas</a></li>
+                            <li class="nav__item"><a class="nav_link" href="{% url 'lista_herramientas' %}">Lista Herramientas</a></li>
+                        {% endif %}
+                        <li class="nav__item"><a class="nav_link" href="{% url 'cerrarSesion' %}">Cerrar Sesión</a></li>
+                    {% else %}
+                        <li class="nav__item"><a class="nav_link" href="{% url 'iniciarSesion' %}">Iniciar sesión</a></li>
+                    {% endif %}
+                </ul>
+
+                {% if user.is_authenticated %}
+                <div class="nav__user-profile">
+                    <img class="nav__user-avatar" src="{% static 'img/avatar.png' %}">
+                    <span class="nav__user-name">{{ user.first_name }} {{ user.last_name }}</span>
+                </div>
+                {% endif %}
+
+            </div>
+        </nav>
+    </header>
+
+    <div class="page-wrapper">
+        <main class="main-content">
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+
+    <footer class="footer">
+        <p>© 2025 ObraMax | Política de privacidad | Términos de uso</p>
+    </footer>
+
+    <script src="{% static 'JS/app.js' %}"></script>
+</body>
+</html>

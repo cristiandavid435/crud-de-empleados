@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesion</title>
+    <link rel="stylesheet" href="{% static 'CSS/styles.css' %}">
+</head>
+<body>
+    <div class="container-formulary">
+        <div class="form-wrapper">
+            <form class="formulary" action="/iniciarSesion/" method="POST">
+                <h2 class="title">Iniciar sesion</h2>
+                <p class="message">{{error}}</p>
+                {% csrf_token %}
+                <div class="container-input">
+                    <input id="username" type="text" name="username" placeholder="Digite su nombre de usuario" required>
+                </div>
+                
+                <div class="container-input">
+                    
+                    <input id="password" type="password" name="password" placeholder="Digite su contraseña" required>
+                </div>
+
+                <div class="container-input">
+                    <a href="{% url 'password_reset' %}">¿Olvidaste tu contraseña?</a>
+                </div>
+                
+                <div class="container-input">
+                    <button class="button">
+                        Iniciar sesion
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+{% endblock %}
