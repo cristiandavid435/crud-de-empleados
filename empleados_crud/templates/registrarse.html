@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-formulary">
+    <div class="form-wrapper">
+        <form class="formulary" method="post" novalidate>
+            <h2 class="title">Crear cuenta</h2>
+            <p>Regístrate para acceder como ingeniero civil.</p>
+            {% csrf_token %}
+
+            {% if form.non_field_errors %}
+                <div class="message">{{ form.non_field_errors }}</div>
+            {% endif %}
+
+            {% for field in form %}
+                <div class="container-input">
+                    {{ field }}
+                    {% for error in field.errors %}
+                        <small class="message">{{ error }}</small>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+
+            <div class="btn-container">
+                <button class="buttons" type="submit">Registrarme</button>
+            </div>
+            <div class="container-input">
+                <span>¿Ya tienes cuenta? <a href="{% url 'iniciarSesion' %}">Inicia sesión</a></span>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

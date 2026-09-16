@@ -34,6 +34,51 @@ class CustomUserCreationForm(UserCreationForm):
         ]
 
 
+class RegistroUsuarioForm(UserCreationForm):
+    """Formulario de registro público.
+
+    El rol se asigna en el servidor para impedir que alguien cree una cuenta
+    administrativa desde la pantalla de registro.
+    """
+    first_name = forms.CharField(required=True, label='Nombres')
+    last_name = forms.CharField(required=True, label='Apellidos')
+    email = forms.EmailField(required=True, label='Correo electrónico')
+    cedula = forms.CharField(required=True, label='Cédula', max_length=15)
+    telefono = forms.CharField(required=True, label='Teléfono', max_length=15)
+
+    class Meta:
+        model = User
+        fields = [
+            'username', 'first_name', 'last_name', 'email', 'cedula',
+            'telefono', 'password1', 'password2'
+        ]
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        placeholders = {
+            'username': 'Nombre de usuario',
+            'first_name': 'Nombres',
+            'last_name': 'Apellidos',
+            'email': 'Correo electrónico',
+            'cedula': 'Cédula',
+            'telefono': 'Teléfono',
+            'password1': 'Contraseña',
+            'password2': 'Confirmar contraseña',
+        }
+        for name, field in self.fields.items():
+            field.widget.attrs.update({
+                'class': 'form-control',
+                'placeholder': placeholders[name],
+            })
+
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        user.rol = 'Ingeniero civil'
+        if commit:
+            user.save()
+        return user
+
+
 User = get_user_model()
 class CustomUserEditForm(forms.ModelForm):
     class Meta:

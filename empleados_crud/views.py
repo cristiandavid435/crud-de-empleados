@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect #Llamamos desde django.shortcuts render y redirect
 from django.contrib.auth.forms import AuthenticationForm  #Llamamos desde django.contrib.auth.forms AuthenticationForm
 from django.contrib.auth import authenticate, login , logout #importamos desde django.contrib.auth  authenticate, login , logout
-from .forms import PrestamoHerramientaForm,NominaForm,CustomUserCreationForm,CustomUserEditForm #Llamamos desde forms estos formulario
+from .forms import PrestamoHerramientaForm,NominaForm,CustomUserCreationForm,CustomUserEditForm,RegistroUsuarioForm #Llamamos desde forms estos formulario
 from .models import PrestamoHerramienta,Nomina,CustomUser # Importar los modelos
 from .decorators import admin_required, admin_or_ingeniero
 from django.contrib.auth.decorators import login_required
@@ -38,6 +38,22 @@ def iniciar_sesion(request):
         else:
             login(request,user)
             return redirect('herramientas')
+
+
+def registrarse(request):
+    """Crea una cuenta pública con permisos de Ingeniero civil."""
+    if request.user.is_authenticated:
+        return redirect('herramientas')
+
+    if request.method == 'POST':
+        form = RegistroUsuarioForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('iniciarSesion')
+    else:
+        form = RegistroUsuarioForm()
+
+    return render(request, 'registrarse.html', {'form': form})
         
 @login_required     
 @admin_required   
