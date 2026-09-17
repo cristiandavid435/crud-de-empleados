@@ -9,19 +9,21 @@ https://docs.djangoproject.com/en/5.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
+for linea in (BASE_DIR / '.env').read_text(encoding='utf-8').splitlines():
+    if '=' in linea:
+        nombre, valor = linea.split('=', 1)
+        os.environ[nombre.strip()] = valor.strip().strip('"\'')
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-i71s2feeopmrh8u3xy0^+6zuif64mw83fkdmgkbua*+hi$l!mc'
-
+SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -131,6 +133,7 @@ EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = "cristiansierra2506@gmail.com"
-EMAIL_HOST_PASSWORD = "hkvt kbgl xzmr fpmm"
+EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
+EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD'].replace(' ', '')
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 

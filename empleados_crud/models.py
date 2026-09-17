@@ -15,7 +15,7 @@ class CustomUser(AbstractUser):
         ('Maestro de obra','Maestro de obra'),
     ]
     cedula = models.CharField(max_length=15,unique=True)
-    telefono = models.CharField(unique= True,max_length=15)
+    telefono = models.CharField(max_length=15)
     rol = models.CharField(max_length= 20, choices=ROLES ,blank=True, null=True)
     
     def __str__(self):
